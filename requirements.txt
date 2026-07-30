@@ -1,0 +1,8 @@
+opencv-python
+numpy<2
+tensorflow==2.10.0
+keras==2.10.0
+mtcnn
+protobuf==3.19.6
+pyttsx3
+speech_recognition
