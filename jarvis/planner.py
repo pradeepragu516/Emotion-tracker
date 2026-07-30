@@ -5,64 +5,73 @@ class TaskPlanner:
         intent, confidence, payload = classify_intent(command)
 
         if confidence < 0.5:
-            return [{"action": "SPEAK_RESPONSE", "speech": "I am not sure what you mean. Could you rephrase?"}]
+            return [{"action": "SEARCH_WEB", "query": command}]
 
-        if intent == "SEARCH_WEB":
-            return [
-                {"action": "SEARCH_WEB", "query": payload}
-            ]
-
-        if intent == "OPEN_CHROME":
-            return [
-                {"action": "OPEN_CHROME"}
-            ]
-
-        if intent == "OPEN_YOUTUBE":
-            return [
-                {"action": "OPEN_YOUTUBE"}
-            ]
-
-        if intent == "OPEN_NOTEPAD":
-            return [
-                {"action": "OPEN_NOTEPAD"}
-            ]
-
-        if intent == "OPEN_CALCULATOR":
-            return [
-                {"action": "OPEN_CALCULATOR"}
-            ]
-
-        if intent == "GET_TIME":
-            return [
-                {"action": "GET_TIME"}
-            ]
-
-        if intent == "GET_DATE":
-            return [
-                {"action": "GET_DATE"}
-            ]
-
-        if intent == "SYSTEM_STATUS":
-            return [
-                {"action": "SYSTEM_STATUS"}
-            ]
-
-        if intent == "PLAY_MUSIC":
-            return [
-                {"action": "SET_VOLUME", "value": 50},
-                {"action": "PLAY_MUSIC"}
-            ]
+        if intent == "CANCEL_SHUTDOWN":
+            return [{"action": "CANCEL_SHUTDOWN"}]
 
         if intent == "SHUTDOWN":
             return [
-                {"action": "CONFIRM_USER"},
                 {"action": "SHUTDOWN"}
             ]
 
-        if intent == "EMOTION_TALK":
-            return [
-                {"action": "EMOTION_RESPONSE"}
-            ]
+        if intent == "OPEN_APP":
+            return [{"action": "OPEN_APP", "app": payload}]
 
-        return [{"action": "IDLE"}]
+        if intent == "OPEN_CHROME":
+            return [{"action": "OPEN_APP", "app": "chrome"}]
+
+        if intent == "OPEN_YOUTUBE":
+            return [{"action": "OPEN_APP", "app": "youtube"}]
+
+        if intent == "OPEN_NOTEPAD":
+            return [{"action": "OPEN_APP", "app": "notepad"}]
+
+        if intent == "OPEN_CALCULATOR":
+            return [{"action": "OPEN_APP", "app": "calculator"}]
+
+        if intent == "PLAY_YOUTUBE":
+            return [{"action": "PLAY_YOUTUBE", "query": payload}]
+
+        if intent == "PLAY_MUSIC":
+            return [{"action": "PLAY_MUSIC"}]
+
+        if intent == "SEARCH_WEB":
+            return [{"action": "SEARCH_WEB", "query": payload}]
+
+        if intent == "VOLUME_UP":
+            return [{"action": "VOLUME_UP"}]
+
+        if intent == "VOLUME_DOWN":
+            return [{"action": "VOLUME_DOWN"}]
+
+        if intent == "MUTE":
+            return [{"action": "MUTE"}]
+
+        if intent == "UNMUTE":
+            return [{"action": "UNMUTE"}]
+
+        if intent == "SET_VOLUME":
+            return [{"action": "SET_VOLUME", "value": payload}]
+
+        if intent == "GET_TIME":
+            return [{"action": "GET_TIME"}]
+
+        if intent == "GET_DATE":
+            return [{"action": "GET_DATE"}]
+
+        if intent == "SYSTEM_STATUS":
+            return [{"action": "SYSTEM_STATUS"}]
+
+        if intent == "TELL_JOKE":
+            return [{"action": "TELL_JOKE"}]
+
+        if intent == "GREETING":
+            return [{"action": "GREETING", "text": payload}]
+
+        if intent == "EMOTION_TALK":
+            return [{"action": "EMOTION_RESPONSE"}]
+
+        return [{"action": "SEARCH_WEB", "query": command}]
+
 
